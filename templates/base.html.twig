@@ -1,0 +1,142 @@
+<!DOCTYPE html >
+<html >
+<head>
+    {% block head %}
+        <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link href="{{ asset('styles.css') }}?VERSION={{95855962}}" rel="stylesheet"/>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://kit.fontawesome.com/7f82f61a59.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/logo_blanc.svg') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <title>{% block title %}{% endblock %} - JoinTheCapTable</title>
+    {% endblock %}
+</head>
+<body oncontextmenu="return false" id="body" style="background-color:white!important;" class=" d-flex flex-column min-vh-100">
+{%if (app.user)%}
+{% block navbar %}
+<nav id="navbar" class="container-fluid navbar fixed-top navbar-expand-sm navbar-light text-center">
+    <div class="container">
+        {%block logo%}
+            <a href="/" class="navbar-brand mb-0">
+                <object class="svgClass" width="150" type="image/svg+xml" data="{{asset('img/logo_blanc.svg')}}"></object></a>
+        {%endblock %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-expanded="false" aria-controls="navbarNav"
+                aria-label="Toggle navigation" id ="navbar-toggler">
+            <span class="navbar-toggler-icon"></span>   
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class=" navbar-nav mt-2">
+                <li id="nav-item" class="nav-item active ">
+                    <a href="/#main" class="nav-link active">
+                        ACCUEIL
+                    </a>
+                </li>
+                <li id="nav-item" class="nav-item ">
+                    <a href="/#presss" class="nav-link ">
+                        ACTUALITÉS
+                    </a>
+                </li>
+
+                <li id="nav-item" class="nav-item ">
+                    <a href="/#about" class="nav-link">
+                        À PROPOS 
+                    </a>
+                </li>
+                <li id="nav-item" class="nav-item active">
+                    <p class="nav-link active "> <a class="text-decoration-none" href="/user/{{app.user.id}}"> MES PROJETS </a></p>
+                </li>
+                {% if (app.user.isAdmin) == 1 %}
+                    <li >
+                        <a class ="nav-link btn btn-primary text-light " role="button" href="{{ path('dashboard') }}">Admin</a>
+                    </li>
+                {% endif %}
+                <li >
+                    <a title="Déconnexion" href="{{ path('app_logout') }}" id="logout-link" class="nav-link btn btn-light text-dark ms-2" role="button" alt="logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </li>
+            </ul>
+            
+            
+                
+           
+        </div>
+    </div>
+</nav>
+{% endblock navbar %}  {% endif %}          
+<div id="content">{% block content %}{% endblock %}</div>
+{% block footer %}
+    <footer id="foot" class="mt-auto position-static bg-white fixed-bottom"><div class="container" style="position: absolute, bottom: 0;">
+                
+            <div class="nav border-top pt-5 pb-5 mb-5">
+                <div>
+                    <a href="/" class="navbar-brand h1">
+                        <img class="d-inline-block align-top" alt="logoblack" src="{{asset('img/logo_noir.svg')}}" width="150" height="50"></a>
+                </div>
+                <ul class="list-unstyled d-flex flex-column mx-auto questx">
+                    <li ><a href="/#main" class="nav-link text-dark">Accueil</a></li>
+                    <li ><a href="/#presss" class="nav-link text-dark">Actualités</a></li>
+                    <li ><a href="/#about" class="nav-link text-dark">À propos</a></li>
+                </ul>
+                <div id="newsfoot" style="width: 30%;" class="questx font-weight-bold" >
+                    <div>
+                        <strong class="suivez">Suivez le blog du JTCT, obtenez des mises à jour sur tous les projets.</strong>
+                    </div>
+                    <div class="footsous d-flex pt-3 sub">
+                        <input style="margin-right:5%!important;font-size:15px"id="newsemail" type="email" placeholder="E-Mail" class="font-italic border-bottom form-control mx-auto w-100">
+                        <button id="sousbtn" class="btn btn-light border border-dark subbtn">Souscrire</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex text-muted justify-content-between footbot ">
+                
+                <div>
+                    <p id="cc" class="text-center questx text-muted">©2022. Join The Cap Table</p>
+                </div>
+
+                <div class="d-flex">
+                    <img class="mx-2"src="https://icones.pro/wp-content/uploads/2021/02/icone-twitter-ronde-grise.png" width="30px" height="30px" alt="twitter">
+                    <img class="mx-2"src="https://toppng.com/uploads/preview/gray-facebook-logo-png-11536002413lctvryrhnt.png" width="30px" height="30px" alt="twitter">
+                    <img class="mx-2 mb-3"src="http://www.oenodyssee.fr/wp-content/uploads/2017/10/linkedin.png" width="30px" height="30px" alt="twitter">
+                </div>
+                
+                </div>
+    </footer></div>
+{%block script %}
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                if($(window).scrollTop()>560){
+                    $("#navbar").css({"background-color":"white"});
+                    $(".nav-link").css({"color":"black"});
+                    document.querySelector("#logout-link").classList.remove("text-dark");
+                    document.querySelector("#logout-link").classList.add("text-light");
+                    document.querySelector("#logout-link").classList.add("btn-dark");
+                    document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID").setAttribute("fill", "black")
+                    document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID2").setAttribute("fill", "black")
+   
+                }
+                else{
+                    $("#navbar").css({"background-color":"transparent"});
+                    $(".nav-link").css({"color":"white"});
+                    document.querySelector("#logout-link").classList.remove("btn-dark");
+                    document.querySelector("#logout-link").classList.add("text-dark");
+                    document.querySelector("#logout-link").classList.remove("text-light");
+                    document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID").setAttribute("fill", "white")
+                    document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID2").setAttribute("fill", "white")
+                }
+                
+            })
+        })
+    </script>
+{%endblock %}
+{% endblock %}
+</body>
+</html>

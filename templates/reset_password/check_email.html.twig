@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier votre mot de passe{% endblock %}
+{% block head %}
+    {{ parent() }}
+    {% endblock %}
+
+{% block content %}
+<div class="mt-5 container">
+    <p>
+        Si un compte qui correpond à votre email existe, un email qui contient un lien de modification du mot de passe va être envoyé .
+        Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle','fr_FR') }}.
+    </p>
+    <p>Si vous ne recevez pas de mail, veuillez vérifier votre dossier SPAM ou <a href="{{ path('app_forgot_password_request') }}">réessayer</a>.</p>
+</div>
+    {% endblock %}

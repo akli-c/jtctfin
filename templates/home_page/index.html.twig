@@ -1,0 +1,215 @@
+{% extends "./base.html.twig" %}
+
+{% block title %}Join The Cap Table{% endblock %}
+{% block head %}
+    {{ parent() }}
+
+    <style type="text/css">
+
+      .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+        color:transparent !important;
+        
+      } 
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: left;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius:20px;
+        margin-bottom :5%;
+      }
+
+      
+      .carousel-item {
+        transition: -webkit-transform 0.5s ease !important;
+        transition: transform 0.5s ease !important;
+        transition: transform 0.5s ease, -webkit-transform 0.5s ease !important;
+        -webkit-backface-visibility: visible !important;
+        backface-visibility: visible !important;
+    }   
+      .slide {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+    {% endblock %}
+{% block content %}
+
+    
+    
+    <section id ="main" class=" text-dark  text-center ">
+      <div id="carouselExampleIndicators" style="height:90vh;" class="carousel slide" data-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{{asset('img/ok/1.png')}}" style="height:90vh;"class="w-100" alt="...">
+            <div class="carousel-caption d-md-block">
+              <h1 style="font-size:50px">Rodeeo, the <br>largest vehicle<br> rental platform</h2>
+              <p style="font-family:Roboto">Mollit aute reprehenderit deserunt Lorem enim officia esse cupidatat.<br>Nisi do mollit duis reprehenderit mollit incididunt laboris.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{{asset('img/ok/2.png')}}" style="height:90vh;" class=" w-100" alt="...">
+            <div class="carousel-caption  d-md-block">
+              <h4>Second slide label</h4>
+              <p>Some representative placeholder content for the second slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{{asset('img/ok/3.png')}}" style="height:90vh;" class=" w-100" alt="...">
+            <div class="carousel-caption d-md-block">
+              <h4>Third slide label</h4>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        {#
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        #}
+      </div>
+    </section>
+    
+       
+    <div id="hp" class="hp container">
+      <span style="display: block;
+      height: 85px; 
+      margin-top: -85px; 
+      visibility: hidden;"id="presss"></span>
+    <section id ="press" class="text-dark ms-2">
+    
+
+
+
+<div class="swiper mySwiper pt-2">
+  <h2>Les dernières nouveautés</h2>
+  <div class="swiper-button-next"><i id="arrow" class="fa-solid fa-arrow-right"></i></div>
+    <div class="swiper-wrapper pt-5">
+      {% for d in news %}
+        {%if d.enAvant == 0%}
+          <div class="swiper-slide slide"><img style="-webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+             user-select: none; align-self:flex-start; height:320px" src="{{ asset("img/news/#{d.getPhoto()}") }}" href="/news/{{d.id}}" alt="news image">
+          <h6 class="fw-bold mb-3" style="min-height:40px">{{ d.title }}</h5>
+          <p style="font-size:13px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ d.text}}</p>
+          <a class="swiper-slide" style="background-image:url(images/imperialthumb.jpg)" href="www.google.com"></a>
+          <a style="color:black;align-self:flex-start;font-family:Arial;margin-top:1%; font-size:15px;" href="/news/{{d.id}}" >Voir plus </a></div>
+          {%endif%}
+        {% endfor %}
+          </div>
+    </div>
+    
+          {% for d in news %}
+            {%if d.enAvant == 1%}
+              <div class="container py-5 mt-5 d-flex ">
+                <div style="width:50%;">
+                  <img class="container pe-4"style="border-radius:10%; "src="{{ asset("img/news/#{d.getPhoto()}") }}" alt="image news">
+                </div>
+                  <div style="width:50%">
+                    <h5 class="fw-bold"style="font-size:30px">{{ d.title }}</h5>
+                    <p>{{ d.text}}</p>
+                    <a style="color:black;align-self:flex-start;font-family:Arial;margin-top:1%; font-size:15px;" href="/news/{{d.id}}" >Voir plus </a></div>
+                  </div>
+                </div>  
+            {%endif%}
+          {% endfor %}          
+      <div class="container">
+    <a class="text-muted" style="text-decoration:none;color:black;align-self:flex-start;font-family:'Roboto', sans-serif;margin-top:1%;font-size:15px;" href="/#presss">Voir toutes les nouveautés
+      <i style="margin-left:25%;font-size:15px;color:black"class="fa-solid fa-arrow-right"></i> 
+    <hr style="margin-top:1%;width:40%"></a> 
+    </div>
+    </section>
+    
+  
+    
+    
+   {# <section id ="faq" class="d-flex  text-dark text-center  ">
+        <div class="pt-5 px-5 d-flex flex-col align-self-center ">
+                <div class=""><h1>Vous avez une question ?</h1>
+                <h2>N'hésitez pas à nous en faire part, toutes vos questions seront publiées ci-dessous publiquement et nous y apporterons vos réponse.</h2>
+                <a href="mailto:hello@fibonacci.group" type="button" class="mt-5 btn btn-lg btn-outline-warning" name="contacter" value="Nous contacter">Nous contacter</a>
+                </div>
+            </div>      
+    </section>#}
+
+    <section id ="about" class="text-dark pt-3 container  ">
+      <h2 class="pl-2 pt-5">À propos</h2><br>
+      <p class="pl-2">Le principe de JTCT est simple :
+         réunir des collectifs de petits investisseurs et business angels
+          dans des tours de table limités afin d’accompagner les startup sur
+           leurs levées de fond early stage et pré-money, à une étape des projets 
+           où les fonds d’investissement, les family office, les accélérateurs ou 
+           les structures « organisées » ont parfois du mal à leur faire confiance 
+           et à prendre des risques.<br>
+        <strong>Join The Captable</strong> se présente donc comme LE partenaire des startups qui souhaitent débuter leur activité et attaquer leur marché.</p>
+  </section>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        centeredSlides: false,
+       
+        grabCursor: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          375: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 2.25,
+            spaceBetween: 50,
+          },
+        },
+      });
+    </script>
+    <script>
+      var navbar = document.getElementById("navbar");
+      var togNav = document.getElementById("navbar-toggler");
+      
+        togNav.addEventListener("click", function(){
+          navbar.classList.add("bg-light");
+          document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID").setAttribute("fill", "black");
+          document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID2").setAttribute("fill", "black");
+            $(".nav-link").css({"color":"black"});
+        if (togNav.classList.contains("collapsed")){
+          navbar.classList.remove("bg-light");
+          document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID").setAttribute("fill", "white");
+          document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID2").setAttribute("fill", "white");
+        }
+      });
+     
+      </script>
+{% endblock %}

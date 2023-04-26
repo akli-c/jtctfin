@@ -1,0 +1,206 @@
+{% extends "./base.html.twig" %}
+
+{% block title %}User Page{% endblock %}
+{% block head %}
+{{ parent() }}
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+        <link href="{{ asset('styles/style2.css') }}?VERSION={{84555}}" rel="stylesheet"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/logo_blanc.svg') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+     <style type="text/css">
+      .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+        color:transparent !important;
+        
+      }
+      </style>  
+    
+        {% endblock %}
+     {% block logo %}
+    <a href="/" class="navbar-brand mb-0">
+        <img class="svgClass" width="150" type="image/svg" src="{{ asset("img/logo_noir.svg") }}"></img></a>          
+    {% endblock %}
+    
+{% block content %}
+<div id ="all" class="container pt-4 text-dark text-start ">
+   
+<section id="topuser" class="pt-5 border-bottom" >   
+    <div>
+        <h2 class="mt-3">Bienvenue {{app.user.getFirstName }} {{app.user.getLastName}}</h2>
+        <p class="mt-4 text-muted"><small>Investissement total </small></p>
+        <h1 class="mt-1 text-dark">
+        {% set sum = 0 %}
+            {% for t in app.user.getProjects %}
+               {% set sum = sum + t.price %}
+            {% endfor %}
+       {{sum|number_format()}}€</h2>
+    </div>
+<div class="container btnadm">
+    <button onclick="openAlert()" class="btn btn-light border-dark " style="float: right;margin-top:17%">Éditer mon profil</button>
+    
+    <div class="alert" id="alert">
+      
+      <div class="alert-header">
+        <div class="alert-title">Arrive bientôt ... </div>
+        <button onclick="closeAlert()" class="btn close-button">&times;</button>
+      </div>
+      
+      <div class="alert-body">
+        Pour le moment, … Seul l’administrateur peut modifier les profils.<br> <a href="mailto:loic.c@fibonacci.group">Contactez l’administrateur</a>.
+      </div>
+
+    </div>
+</div>
+</section>
+<section class="projects mb-5">
+    <h2 style="margin-bottom:-4%;">Mes participations</h2>
+    <div class="container swiper mySwiper d-flex justify-content-around">
+    <div class="swiper-button-next"><i style="margin-bottom:1800%;font-size:25px;color:black"class="fa-solid fa-arrow-right"></i></div>
+    <div class="swiper-wrapper">
+    {%for d in app.user.getProjects  %}
+    
+    <div class="swip-pj not-selectable swiper-slide mt-5 d-flex flex-column">
+    <a href="/project/{{d.id}}" style="text-align:-webkit-center">
+      <img unselectable="on" class="logopro my-5 " style="margin-bottom:5%!important" src="{{ asset("img/projects/#{d.getLogo()}") }}" alt="logo">
+    </a>
+    <p class="text-muted" style="align-self: start; text-transform:uppercase">{{d.name}}</p>
+    <h3 style="align-self: start;">{{d.price}} €</h3>
+    </div>
+    {% else %}
+    <h4 class="my-5 text-muted">Vous n'avez pas de projets pour l'instant, rejoignez nous !</h4>
+        
+    {%endfor%}
+    
+    </div>
+
+    </div>
+</section>
+
+<section id="available">
+  <section class="projects mb-5">
+    <h2>Mes projets d'investissement</h2>
+    <div class="container avai swiper mySwiper d-flex justify-content-around">
+    <div class="swiper-button-next"><i style="font-size:25px;color:black"class="fa-solid fa-arrow-right"></i></div>
+    <div class="swiper-wrapper">
+    {%set ids = [] %}
+    {%for project in app.user.getProjects  %}     
+     {% set ids = ids|merge([project.id]) %}
+    {%endfor%}
+
+    {%set idp = [] %}
+    {%for d in projects  %}
+     {% set idp = idp|merge([d.id]) %}
+    {%endfor%}
+
+    {%for d in projects  %}
+    {%if d not in app.user.getProjects %}
+    <div class="not-selectable swiper-slide mt-5 d-flex flex-column">
+      <a href="/project/{{d.id}}" style="text-align:-webkit-center">
+        <img unselectable="on" class="logopro my-5 " style="margin-top:-2%!important;margin-bottom:5%!important" src="{{ asset("img/projects/#{d.getLogo()}") }}" alt="logo">
+      </a>
+      <p class="text-muted" style="align-self: start; text-transform:uppercase">{{d.name}}</p>
+      <p style="align-self: start;font-family:Roboto;">Investissement minimal : <strong>{{d.price}} €</strong></p>
+     
+   
+  </div>
+    
+    {% endif%}  
+    {%endfor%}
+
+    {%if idp == ids  %}
+    <h4 class="text-muted">Il n'y a pas de projets disponibles, à venir bientôt ... </h4>
+    {% endif%}
+    </div>
+    </div>
+</section>
+</section>
+
+<section class="my-5" id="commu">
+    <h2>Ma communauté</h2>
+    <h4 class="text-muted" style="text-transform: capitalize;">à venir ... </h4>
+</section>
+
+<section id="earn">
+    <h2>Mes gains</h2>
+    <h4 class="text-muted" style="text-transform: capitalize;">à venir ... </h4>
+</section>
+
+
+</div>
+<script type="text/javascript">
+
+function openAlert() {
+  document.querySelector(".alert").classList.add("active");
+}
+
+function closeAlert() {
+  document.querySelector(".alert").classList.remove("active")
+}
+
+  </script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3.25,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          375: {
+            slidesPerView: 1,
+            spaceBetween: 50,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 3.25,
+            spaceBetween: 50,
+          },
+        },
+      });
+    {% block script %}
+    </script>
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                if($(window).scrollTop() > $(window).height()){
+                    $("#navbar").css({"background-color":"white"});
+                    $(".nav-link").css({"color":"black"});
+                    document.querySelector("#logout-link").classList.remove("text-dark");  
+                    document.querySelector("#logout-link").classList.add("text-light"); 
+                    document.querySelector("#logout-link").classList.add("btn-dark");   
+                    document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID").setAttribute("fill", "black")
+                    document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID2").setAttribute("fill", "black")   
+
+                }
+                else{
+                    $("#navbar").css({"background-color":"white"});
+                    $(".nav-link").css({"color":"black"});
+                    document.querySelector("#logout-link").classList.remove("btn-dark");   
+                    document.querySelector("#logout-link").classList.add("text-dark");
+                    document.querySelector("#logout-link").classList.remove("text-light");    
+                    document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID").setAttribute("fill", "black")  
+                    document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID2").setAttribute("fill", "black")    
+                }
+        
+            })
+        })
+      </script>
+      {% endblock %}
+{% endblock %}
+
+

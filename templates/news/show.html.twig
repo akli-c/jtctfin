@@ -1,0 +1,124 @@
+{% extends "./base.html.twig" %}
+
+{% block title %}{{news.title}}{% endblock %}
+{% block head %}
+{{ parent() }}
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+        <link href="{{ asset('styles.css') }}?VERSION={{8745}}" rel="stylesheet"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/7f82f61a59.js" crossorigin="anonymous"></script>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/logo_blanc.svg') }}"> 
+      {% endblock %}
+     {% block logo %}
+    <a href="/" style="padding-left:3%" class="navbar-brand mb-0">
+        <img  class="svgClass" width="150" type="image/svg" src="{{ asset("img/logo_noir.svg") }}"></img></a>          
+    {% endblock %}
+{% block content %}
+    <div class="artall container ">
+      <div class="mt-5">
+        
+      </div>
+    
+        <div id="artitle">
+        <h4 style="padding-bottom:2%;color:#785ee5;font-size:xx-large" class="mb-4">{{ news.title }}</h4>
+          <div id="borderbt"></div>
+      </div>
+      <div id="carouselExampleIndicators" style="width:100%; margin-top:5%;margin-left:auto; margin-right:auto" class="carousel slide" data-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" style="border-radius:20px">
+          <div class="carousel-item active">
+            <img src="{{asset('img/ok/1.png')}}"  alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{{asset('img/ok/2.png')}}" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{{asset('img/ok/3.png')}}" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+       <div style="display:flex" class="my-5">
+        <p>
+          {{ news.text }}
+        </p>
+      
+          <img style="border-radius:10px" src="{{ asset("img/news/#{news.getPhoto()}") }}" class="w-25 ms-5" />
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mx-5 mb-5">
+      
+    
+
+    {#  {%if news != NULL%}
+    <a href="{{ path('app_news_next', {'id': news.id-1 }) }}" style="background-color:#785ee5" class="btn btn-primary">Article Précedent</a>
+      {%endif%}
+    <a href="{{ path('app_news_previous', {'id': news.id+1 }) }}" style="background-color:#785ee5" class="btn btn-primary">Article suivant</a>
+  </div> #}
+{#
+  <div>
+    <form action="{{ path('app_news_previous', { 'id': news.id}) }}" method="get">
+    <input class="btn btn-success" type="submit" value="Précedent" name="participer">
+    </form>
+  </div>
+  
+  <div>
+    <form action="{{ path('app_news_next', { 'id': news.id}) }}" method="get">
+    <input class="btn btn-success" type="submit" value="Suivant" name="participer">
+    </form>
+  </div> #}
+
+  
+
+
+    {% block script %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
+  <script>
+      $(document).ready(function(){
+          $(window).scroll(function(){
+              if($(window).scrollTop() > $(window).height()){
+                  $("#navbar").css({"background-color":"white"});
+                  $(".nav-link").css({"color":"black"});
+                  document.querySelector("#logout-link").classList.remove("text-dark");  
+                  document.querySelector("#logout-link").classList.add("text-light"); 
+                  document.querySelector("#logout-link").classList.add("btn-dark");   
+                  document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID").setAttribute("fill", "black")
+                  document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID2").setAttribute("fill", "black")   
+
+              }
+              else{
+                  $("#navbar").css({"background-color":"white"});
+                  $(".nav-link").css({"color":"black"});
+                  document.querySelector("#logout-link").classList.remove("btn-dark");   
+                  document.querySelector("#logout-link").classList.add("text-dark");
+                  document.querySelector("#logout-link").classList.remove("text-light");    
+                  document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID").setAttribute("fill", "black")  
+                  document.querySelector(".svgClass").getSVGDocument().getElementById("svgInternalID2").setAttribute("fill", "black")    
+              }
+      
+          })
+      })
+    </script> 
+    {% endblock %}
+{% endblock %}

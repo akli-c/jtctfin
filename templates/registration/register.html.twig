@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="sidenav">
+    <div class="login-main-text">
+       <h2>Application<br> Register Page</h2>
+       <p>Register from here to access.</p>
+    </div>
+ </div>
+ <div class="main">
+    <div class="col-md-6 col-sm-12">
+       <div class="login-form">
+        <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+    {{ form_start(add) }}
+    <div class="input-group">
+        <div class="input-group-append">
+          <span class="input-group-text rounded">{{ form_row(add.lastname) }}</span>
+          <span class="input-group-text rounded ml-2">{{ form_row(add.firstname) }} </span>
+        </div>
+    </div>
+      <div class="mt-2">{{ form_row(add.email,{type:'email'}) }}</div>
+      <div class="mt-2">{{ form_row(add.plainPassword, {
+            label: 'Password'
+        }) }}</div>
+        
+        <div class="mt-2">{{ form_row(add.phone)}}</div>
+        
+        <button type="submit" class="btn btn-secondary mt-3">Add the user</button>
+    {{ form_end(add) }}
+{% endblock %}
+{% block footer %}
+{% endblock %}

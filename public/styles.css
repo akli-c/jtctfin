@@ -1,0 +1,351 @@
+.sidenav {
+    height: 100%;
+    overflow-x: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+    color: #785ee5 ;
+}
+
+@font-face { 
+    font-family: 'supply-mono'; 
+    src: url('/styles/fonts/Supply/PPSupplyMono-Regular.otf');
+}
+@font-face { 
+    font-family: 'supply-mono-l'; 
+    src: url('/styles/fonts/Supply/PPSupplyMono-UltraLight.otf');
+}
+@font-face { 
+    font-family: 'supply-sans'; 
+    src: url('/styles/fonts/Supply/PPSupplySans-Regular.otf');
+}
+@font-face { 
+    font-family: 'supply-sans-l'; 
+    src: url('/styles/fonts/Supply/PPSupplySans-UltraLight.otf');
+}   
+
+footer {
+    font-family: 'Roboto', sans-serif;
+}
+
+#sousbtn {
+    border-radius: 5px ;
+    padding: 2.5%!important;
+}
+
+.suivez {
+    font-size: 17px;
+}
+
+#foot {
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+}
+
+#navbar {
+    padding-top: 2%;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+#content {
+    background-color: white;
+    font-family: supply-mono;
+}
+
+.main {
+    padding: 0 10px;
+    height: 50%;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .login-form {
+        margin-top: 10%;
+    }
+    .register-form {
+        margin-top: 10%;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    p, a {
+        font-size: 9px!important;
+    }
+
+    .w-100 {
+        height: 35vh!important;
+    }
+
+    #carouselExampleIndicators{
+        height: 35vh!important;
+    }
+
+    #arrow {
+        margin-bottom: 1870%!important;
+        font-size: 20px!important;
+    }
+
+    #sousbtn, #newsemail {
+        font-size: 10px!important;
+        height: 10%!important;
+    }
+
+    #sousbtn{
+        margin-top: 5px!important;
+    }
+
+    .carousel-caption {
+        display: block!important;
+    }
+
+    h1{
+        font-size: 20px!important;
+    }
+    h2{
+        font-size: 18px!important;
+    }
+    h4 {
+        font-size: 15px!important;
+    }
+    h5{
+        font-size: 13px!important;
+    }
+    h6{
+        font-size:11px!important;
+    }
+    
+    .footsous {
+        flex-direction: column;
+    }
+
+    .suivez {
+        font-size: 10px!important;
+    }
+
+    .ww {
+        height: auto!important;
+    }
+    footer {
+        font-size: 10px;
+    }
+    #newsfoot {
+    width: 30%!important;
+        }
+    #content {
+        font-size: 10px;
+    }
+    #logout-link {
+        margin-top: 3%;
+        width: 100%;
+        margin-left: 0!important;    }
+    .main {
+        margin-left: 41%!important;
+        font-size: 10px;
+    }
+    .sidenav {
+        width: 40%!important;
+        background-size: cover;
+        background-position:center;
+    }
+    .login-form {
+        margin-top: 20%;
+    }
+    .register-form {
+        margin-top: 20%;
+    }
+    #loginbtn {
+        width: 60%!important;
+    }
+}
+#arrow {
+    margin-bottom: 2000%;
+    font-size: 25px;
+    color: black;
+}
+
+
+.main {
+        margin-left: 55%;
+}
+.sidenav {
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+.login-form {
+    margin-top: 20%;
+}
+.register-form {
+    margin-top: 20%;
+}
+.login-main-text {
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff;
+}
+
+.login-main-text h2 {
+    font-weight: 300;
+}
+
+
+#loginbtn{
+    background-color: #785ee5;
+    border: 0;
+    color: white;
+    border-radius: 4px;
+    width: 300px;
+    height: 50px;
+}
+
+.btn-black {
+    background-color: #000 !important;
+    color: #fff;
+}
+
+#press {
+    margin-top: 1%; 
+    min-height: 70vh;
+}
+
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+}
+
+#nav-item {
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-link, {
+    color: white;
+}
+
+
+
+
+.ml-6,
+.mx-6 {
+    padding-right: 220px;
+}
+
+.carousel-inner {
+    height: 90vh;
+}
+
+.carousel-caption {
+    text-align: justify!important;
+    padding-bottom: 12%!important;
+    left: 8%!important;
+    float: left;
+    position: sticky!important;
+}
+
+#newsemail {
+    border: none;
+    width: 50%;
+}
+
+
+
+#all {
+    position: relative;
+    margin-top: 3%;
+}
+
+#topuser {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8%;
+}
+
+
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    cursor: grab;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.swiper-pagination {
+    bottom : 0px!important;
+}
+
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.bjr {
+    width: 500px;
+    display: flex;
+}
+
+.artall {
+    margin-top: 9%;
+    min-height: 80vh;
+}
+
+.cgv {
+    margin-top: 7%;
+}
+
+#borderbt {
+    border-bottom: 3px solid #785ee5;
+    position: absolute;
+    bottom: 0;
+    width: 45%;
+}
+
+#artitle {
+  width: 45%;
+  position: relative;
+}
